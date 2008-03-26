@@ -1,0 +1,7 @@
+History.txt
+Manifest.txt
+README.txt
+Rakefile
+bin/simple_memoize
+lib/simple_memoize.rb
+test/test_simple_memoize.rb
