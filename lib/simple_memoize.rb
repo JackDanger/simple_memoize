@@ -3,17 +3,21 @@ module SimpleMemoize
 
   module Module
     def memoize(method_name)
+      method_name = method_name.to_s
       memoized_method_name = "#{method_name}_with_memo"
       regular_method_name  = "#{method_name}_without_memo"
 
+      unless (instance_methods + private_instance_methods).include?(method_name)
+        raise NoMethodError, "#{method_name} cannot be memoized because it doesn't exist in #{self}"
+      end
       return if self.method_defined?(memoized_method_name)
     
       self.class_eval do
 
         define_method memoized_method_name do |*args|
-          @simple_memo ||= {}
-          @simple_memo[method_name] ||= {}
-          @simple_memo[method_name][args] ||= send(regular_method_name, *args)
+          @simple_memoize ||= {}
+          @simple_memoize[method_name] ||= {}
+          @simple_memoize[method_name][args] ||= send(regular_method_name, *args)
         end
 
         alias_method regular_method_name, method_name
