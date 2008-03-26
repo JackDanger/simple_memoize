@@ -9,7 +9,7 @@ module SimpleMemoize
         regular_method_name  = "#{method_name}_without_memo"
 
         unless (instance_methods + private_instance_methods).include?(method_name)
-          raise NoMethodError, "#{method_name} cannot be memoized because it doesn't exist in #{self}"
+          raise NoMethodError, "The Method '#{method_name}' cannot be memoized because it doesn't exist in #{self}"
         end
         return if self.method_defined?(memoized_method_name)
     
