@@ -2,5 +2,5 @@
 
 * 1 major enhancement
 
-  * Birthday!
+  * Clean little gem
 
