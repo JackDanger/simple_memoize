@@ -6,6 +6,7 @@
 
 Provides in-memory caching of any Ruby method.  It's dead simple and won't get in the way of any of your code.
 For something more robust that offers persistence try http://github.com/JackDanger/cached_values/
+Documentation also available here: http://objectproxy.rubyforge.org/simple_memoize/
 
 == USAGE:
 
