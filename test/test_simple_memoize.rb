@@ -107,4 +107,8 @@ class SimpleMemoizeTest < Test::Unit::TestCase
     assert dog.private_methods.include?('private_growl_without_memo')
     assert dog.private_methods.include?('private_growl')
   end
+  
+  def test_cant_memoize_a_missing_method
+    assert_raises(NoMethodError) { Barks.memoize :totally_bad_method_name }
+  end
 end
