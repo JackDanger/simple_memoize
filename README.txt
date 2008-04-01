@@ -2,6 +2,8 @@
 
 * http://github.com/JackDanger/simple_memoize/
 
+Developed for and by the engineers at http://adPickles.com/
+
 == DESCRIPTION:
 
 Provides in-memory caching of any Ruby method.  It's dead simple and won't get in the way of any of your code.
