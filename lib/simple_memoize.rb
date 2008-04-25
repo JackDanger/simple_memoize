@@ -13,21 +13,17 @@ module SimpleMemoize
         end
         return if self.method_defined?(memoized_method_name)
     
-        self.class_eval do
-
-          define_method memoized_method_name do |*args|
-            @simple_memoize ||= {}
-            @simple_memoize[method_name] ||= {}
-            @simple_memoize[method_name][args] ||= send(regular_method_name, *args)
+        self.class_eval "
+          def #{memoized_method_name}(*args)
+            @#{method_name} ||= #{regular_method_name}(*args)
           end
 
-          alias_method regular_method_name, method_name
-          alias_method method_name, memoized_method_name
+          alias_method :#{regular_method_name}, :#{method_name}
+          alias_method :#{method_name}, :#{memoized_method_name}
 
-          protected method_name if protected_instance_methods.include?(regular_method_name)
-          private   method_name if private_instance_methods.include?(regular_method_name)
-
-        end
+          protected :#{method_name} if protected_instance_methods.include?('#{regular_method_name}')
+          private   :#{method_name} if private_instance_methods.include?('#{regular_method_name}')
+        "
       end
     end
   end
