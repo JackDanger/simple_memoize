@@ -9,6 +9,11 @@ module Barks
   end
   memoize :growl
   
+  def muzzle
+    @growl = false
+  end
+  memoize :muzzle
+  
   def protected_growl
     'Grrrrr'
   end
@@ -50,6 +55,12 @@ class SimpleMemoizeTest < Test::Unit::TestCase
     dog = Dog.new
     dog.expects(:growl_without_memo).returns('Grrrrr').once
     4.times { dog.growl }
+  end
+  
+  def test_module_mehthod_only_calls_memoized_once_for_non_truthy_result
+    dog = Dog.new
+    dog.expects(:muzzle_without_memo).returns(false).once
+    4.times { dog.muzzle }
   end
 
   def test_module_method_calls_method_several_times

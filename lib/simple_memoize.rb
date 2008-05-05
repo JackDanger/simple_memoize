@@ -15,7 +15,11 @@ module SimpleMemoize
     
         self.class_eval "
           def #{memoized_method_name}(*args)
-            @#{method_name} ||= #{regular_method_name}(*args)
+            if defined?(@#{method_name})
+              @#{method_name}
+            else
+              @#{method_name} = #{regular_method_name}(*args)
+            end
           end
 
           alias_method :#{regular_method_name}, :#{method_name}
