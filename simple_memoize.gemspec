@@ -1,4 +1,3 @@
-(in /www/projects/simple_memoize)
 Gem::Specification.new do |s|
   s.name = %q{simple_memoize}
   s.version = "1.1.0"
