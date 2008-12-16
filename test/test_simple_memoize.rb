@@ -8,7 +8,7 @@ module Barks
     'Grrrrr'
   end
   memoize :growl
-  
+
   def muzzle
     @growl = false
   end
@@ -41,7 +41,12 @@ class Dog
     'slurp'
   end
   memoize :drink
-  
+
+  def hungry?
+    true
+  end
+  memoize :hungry?
+
   class << self
     def breeds
       ['doberman', 'dalmatian']
@@ -55,6 +60,12 @@ class SimpleMemoizeTest < Test::Unit::TestCase
     dog = Dog.new
     dog.expects(:growl_without_memo).returns('Grrrrr').once
     4.times { dog.growl }
+  end
+
+  def test_method_punctuation_carried_to_end_of_method
+    dog = Dog.new
+    dog.expects(:hungry_without_memo?).returns(true).once
+    4.times { dog.hungry? }
   end
   
   def test_module_mehthod_only_calls_memoized_once_for_non_truthy_result
