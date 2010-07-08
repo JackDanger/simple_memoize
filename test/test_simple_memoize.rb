@@ -120,14 +120,16 @@ class SimpleMemoizeTest < Test::Unit::TestCase
   
   def test_protected_methods_remain_protected
     dog = Dog.new
-    assert dog.protected_methods.include?('protected_growl_without_memo')
-    assert dog.protected_methods.include?('protected_growl')
+    methods = dog.protected_methods
+    assert methods.include?('protected_growl_without_memo') || methods.include?( :protected_growl_without_memo )
+    assert methods.include?('protected_growl') || methods.include?( :protected_growl )
   end
   
   def test_private_methods_remain_private
     dog = Dog.new
-    assert dog.private_methods.include?('private_growl_without_memo')
-    assert dog.private_methods.include?('private_growl')
+    methods = dog.private_methods
+    assert methods.include?('private_growl_without_memo') || methods.include?( :private_growl_without_memo )
+    assert methods.include?('private_growl') || methods.include?( :private_growl )
   end
   
   def test_cant_memoize_a_missing_method
