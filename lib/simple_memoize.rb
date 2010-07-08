@@ -1,5 +1,5 @@
 module SimpleMemoize
-  VERSION = '1.1.1'
+  VERSION = '1.1.2'
 
   module Module
     def memoize(*method_names)
