@@ -1,13 +1,15 @@
-# -*- ruby -*-
-
-require 'rubygems'
-require 'hoe'
-require './lib/simple_memoize.rb'
-
-Hoe.new('simple_memoize', SimpleMemoize::VERSION) do |p|
-  p.rubyforge_name = 'objectproxy' # if different than lowercase project name
-  p.developer('Jack Danger Canty', 'rubygems@6brand.com')
-  p.developer('Joel Friedman', 'jfriedman@lmp-jfriedman01.us.drwholdings.com')
-end
-
 # vim: syntax=Ruby
+begin
+  require 'jeweler'
+  Jeweler::Tasks.new do |gem|
+    gem.name = "simple_memoize"
+    gem.summary = %Q{Very lightweight way to ensure some methods only run once}
+    gem.email = "rubygems@6brand.com"
+    gem.homepage = "http://github.com/JackDanger/simple_memoize"
+    gem.authors = ["Jack Danger Canty"]
+    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
+  end
+  Jeweler::GemcutterTasks.new
+rescue LoadError
+  puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
+end
